@@ -18,7 +18,7 @@ public class UserMapperTest {
 //		new UserMapperTest().addUserByPar();
 		new UserMapperTest().selectOrderBy();
 		
-		System.out.println(123);
+		System.out.println(777);
 	}
 
 	public void addUser() {
@@ -32,12 +32,12 @@ public class UserMapperTest {
 	public void addUserByPar() {
 		SqlSession session = factory.openSession();
 		UserMapper mapper = session.getMapper(UserMapper.class);
-		mapper.addUserByPar(new User(6, "ÀèÃ÷", "111", null, null, null, null));
+		mapper.addUserByPar(new User(6, "Ã€Ã¨ÃƒÃ·", "111", null, null, null, null));
 		session.commit();
 		session.close();
 	}
 
-	//¶¯Ì¬Ìí¼ÓÓÃ»§
+	//Â¶Â¯ÃŒÂ¬ÃŒÃ­Â¼Ã“Ã“ÃƒÂ»Â§
 	@Test
 	public void addOneUserDyn() {
 		SqlSession session = factory.openSession();
