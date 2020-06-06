@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasoft.mapper.UserMapper">
+
+	<insert id="addUserNoPar">
+		insert into user(username,password) values
+		('郭富城',"12345")
+	</insert>
+
+	<insert id="addUserByPar" parameterType="User">
+		insert into
+		user(id,username,password,phone,address,email,c_id) values
+		(#{id},#{username},#{password},#{phone},#{address},#{email},#{c_id})
+	</insert>
+
+	<!-- 动态添加用户 -->
+	<select id="addUserDyn" parameterType="User">
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id,username,password,
+			<if test='phone!=null || phone!=""'>
+				phone,
+			</if>
+			<if test='address !=null || address !=""'>
+				address,
+			</if>
+			<if test='email !=null || email !=""'>
+				email,
+			</if>
+			<if test='c_id!=null || c_id !=""'>
+				c_id
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			#{id},#{username},#{password},
+			<if test='phone!=null || phone!=""'>
+				#{phone},
+			</if>
+			<if test='address !=null || address !=""'>
+				#{address},
+			</if>
+			<if test='email !=null || email !=""'>
+				#{email},
+			</if>
+			<if test='c_id!=null || c_id !=""'>
+				#{c_id}
+			</if>
+		</trim>
+	</select>
+
+	<select id="selectOneByPar" parameterType="int"
+		resultType="User">
+		select * from user where id = #{id}
+	</select>
+
+	<!-- 根据想要的字段排序 -->
+	<select id="selectUserOrderBy" parameterType="String"
+		resultType="user">
+		select * from user order by ${column}
+	</select>
+</mapper>
