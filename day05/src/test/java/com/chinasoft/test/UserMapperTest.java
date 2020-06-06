@@ -17,8 +17,6 @@ public class UserMapperTest {
 	public static void main(String[] args) {
 //		new UserMapperTest().addUserByPar();
 		new UserMapperTest().selectOrderBy();
-		
-		System.out.println(334);
 	}
 
 	public void addUser() {
